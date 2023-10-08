@@ -1,6 +1,7 @@
 import random
 import re
 from typing import Tuple
+import requests
 
 
 class Video:
@@ -131,3 +132,17 @@ class Video:
         for i, video in enumerate(videos):
             print(f"Video {i+ 1}\n {video}")
         return
+
+    def ping_video(self, url):
+        try:
+            response = requests.get(url)
+            return response.status_code
+        except requests.exceptions.ConnectionError:
+            return "Connection Error"
+
+    def get_vid_id(self, url):
+        yt_id = r"/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^\"&?\/\s]{11})/gi"
+        match = re.match(yt_id, url)
+        if match:
+            return match.group(1)
+        return False
