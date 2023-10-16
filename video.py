@@ -1,7 +1,9 @@
 import random
 import re
 from typing import Tuple
+
 import requests
+from requests import exceptions, get
 
 
 class Video:
@@ -135,9 +137,9 @@ class Video:
 
     def ping_video(self, url):
         try:
-            response = requests.get(url)
+            response = get(url)
             return response.status_code
-        except requests.exceptions.ConnectionError:
+        except exceptions.ConnectionError:
             return "Connection Error"
 
     def get_vid_id(self, url):
@@ -146,3 +148,46 @@ class Video:
         if match:
             return match.group(1)
         return False
+
+    def num_comments(self, url):
+        if self.is_watchable:
+            return url.all_comments()
+        else:
+            return requests.ConnectionError
+
+    def place_holder(self):
+        pass
+
+
+class Movie(Video):
+    def __init__(self, is_watchable: bool = False, length: int = 0, watch_list: list = [], rating: float = 0):
+        super().__init__(is_watchable, length, watch_list, rating)
+        self.genre = ""
+        self.title = ""
+        self.director = ""
+        self.actors = []
+        self.release_date = ""
+
+    def __str__(self):
+        return (
+            f"Name: {self.title}\n"
+            f"Video length: {self.length}\n"
+            f"Is it watchable: {self.is_watchable}\n"
+            f"Rating: {self.rating}\n"
+            f"Genre: {self.genre}\n"
+            f"Director: {self.director}\n"
+            f"Actors: {self.actors}\n"
+            f"Release date: {self.release_date}\n"
+        )
+
+
+class Actor():
+    def __init__(self, age: int, num_movie: int) -> None:
+        self.age = age
+        self.num_movie = num_movie
+
+    def __str__(self) -> str:
+        return (
+            f"Actor age: {self.age}"
+            f"Number of movies: {self.num_movie}"
+        )

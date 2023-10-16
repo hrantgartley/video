@@ -22,7 +22,7 @@ def main():
         print(video_list)
 
     for key, value in enumerate(video_list):
-        print(key, value)
+        print("key:", key, "value:", value)
 
 
 if __name__ == "__main__":
