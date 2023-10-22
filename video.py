@@ -6,6 +6,7 @@ import requests
 from requests import exceptions, get
 
 
+# linked prs
 class Video:
     def __init__(self, is_watchable: bool = False, length: int = 0,
                  watch_list: list = [], rating: float = 0):
