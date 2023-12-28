@@ -1,4 +1,6 @@
-from video import Video, random
+import random
+
+from video_class import Video
 
 
 def print_msg(msg) -> None:
@@ -7,10 +9,6 @@ def print_msg(msg) -> None:
 
 def bound(lower, upper) -> int:
     return random.randint(lower, upper)
-
-
-def new_line() -> str:
-    return "\n"
 
 
 def main():
