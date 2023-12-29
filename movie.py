@@ -2,7 +2,8 @@ from video_class import Video
 
 
 class Movie(Video):
-    def __init__(self, is_watchable: bool = False, length: int = 0, watch_list: list = [], rating: float = 0):
+    def __init__(self, is_watchable: bool = False, length: int = 0,
+                 watch_list: list = [], rating: float = 0):
         super().__init__(is_watchable, length, watch_list, rating)
         self.genre = ""
         self.title = ""
@@ -29,8 +30,8 @@ class Movie(Video):
             print("values:", v)
 
     def show_actors(self):
-        for _, v in enumerate(self.actors):
-            print(f"Actor{_+1}: {self.actors[v]}")
+        for index, v in enumerate(self.actors):
+            print(f"Actor{index+1}: {self.actors[v]}")
 
     def find_error(self):
         return super().find_error()

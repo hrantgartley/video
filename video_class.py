@@ -1,8 +1,8 @@
+from __future__ import annotations
 import random
 import re
-from typing import Tuple
+from typing import Tuple, List
 
-import requests
 from requests import exceptions, get
 
 
@@ -118,11 +118,10 @@ class Video:
         good = self.is_watchable
         if good:
             self.is_watchable += 1
-        return good
+        return self.is_watchable
 
-    def add_video(self, is_watchable: bool = False, length: int = 0, watch_list: list = [], rating: float = 0):
-        new_video = Video(is_watchable, length, watch_list, rating)
-        return new_video
+    def add_video(self, is_watchable: bool = False, length: int = 0, watch_list: List[str] = [], rating: float = 0) -> Video:
+        return Video(is_watchable, length, watch_list, rating)
 
     def remove_video(self, genre):
         for iter, video in enumerate(self.watch_list):
@@ -153,4 +152,4 @@ class Video:
         if self.is_watchable:
             return url.all_comments()
         else:
-            return requests.ConnectionError()
+            return ConnectionError()
