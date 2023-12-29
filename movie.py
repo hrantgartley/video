@@ -1,4 +1,4 @@
-from video import Video
+from video_class import Video
 
 
 class Movie(Video):
@@ -23,11 +23,14 @@ class Movie(Video):
         )
 
     def show_list(self):
-        for _, v in enumerate(self.watch_list):
-            if self.watch_list[_] == '':
+        for index, v in enumerate(self.watch_list):
+            if self.watch_list[index] == '':
                 continue
             print("values:", v)
 
     def show_actors(self):
         for _, v in enumerate(self.actors):
             print(f"Actor{_+1}: {self.actors[v]}")
+
+    def find_error(self):
+        return super().find_error()

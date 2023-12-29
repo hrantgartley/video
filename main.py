@@ -1,6 +1,7 @@
 import random
 
 from video_class import Video
+from movie import Movie
 
 
 def print_msg(msg) -> None:
@@ -21,6 +22,8 @@ def main():
 
     for key, value in enumerate(video_list):
         print("key:", key, "value:", value)
+
+    print(Movie().find_error())
 
 
 if __name__ == "__main__":
